@@ -1,7 +1,6 @@
 @extends('layoutClient.app')
 @section('contentClient')
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <div class="container">
     <div class="row">
         @foreach($comptes as $compte)
@@ -23,8 +22,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-8">
+{{--Detail transaction--}}
+            {{--<div class="col-md-8">
                 <h2 class="text-center mb-4">Détails des Transactions</h2>
                 <table class="table table-bordered transactions-table">
                     <thead class="bg-secondary">
@@ -44,11 +43,11 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div>--}}
         @endforeach
     </div>
 </div>
-
+{{--Effectuer  une transaction--}}
 <div class="modal fade" id="modalTransaction" tabindex="-1" role="dialog"
      aria-labelledby="modalTransactionLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -101,108 +100,5 @@
         @endif
     </div>
 @endif
-
-<style>
-    body {
-        background-color: #f8f9fa;
-        font-family: 'Arial', sans-serif;
-    }
-
-    .container {
-        /*margin-top: 30px;*/
-        margin-left: -35px;
-    }
-
-    .card {
-        border: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s;
-        background-color: #fff;
-        margin-left: 40px;
-    }
-
-    .card:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .client-card img {
-        border-radius: 50%;
-        max-width: 70px; /* Taille réduite de l'image */
-        height: auto;
-    }
-
-    .transactions-table {
-        margin-top: 30px;
-    }
-
-    .transactions-table th,
-    .transactions-table td {
-        text-align: center;
-        padding: 15px;
-    }
-
-    .transactions-table th {
-        background-color: darkblue;
-        color: #fff;
-    }
-
-    .table-success {
-        background-color: #d4edda;
-    }
-
-    .table-danger {
-        background-color: #f8d7da;
-    }
-
-    .modal-content {
-        border: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .modal-title {
-        color: darkblue;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .btn-primary {
-        background-color: darkblue;
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-color: darkblue;
-    }
-
-    .navbar {
-        background-color: darkblue;
-        padding: 10px 0;
-    }
-
-    .navbar-brand {
-        color: #fff;
-        font-size: 24px;
-    }
-
-    .navbar-nav {
-        margin-left: auto;
-    }
-
-    .navbar-nav .nav-item {
-        margin-right: 20px;
-    }
-
-    .navbar-nav .nav-link {
-        color: #fff;
-    }
-
-    .session-alerts {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
-</style>
 
 @endsection

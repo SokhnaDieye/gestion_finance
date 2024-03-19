@@ -8,7 +8,7 @@
     <title></title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    {{--<link rel="stylesheet" href="{{asset('pageConnexion/style.css')}}">--}}
+
 </head>
 
 <body>
