@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 // generer cssCarte
     Route::get('/carte', [\App\Http\Controllers\GenereteCarteController::class, 'index'])->name('carte');
-    Route::post('/generate-cssCarte', [GenereteCarteController::class,'genererCarte'])->name('generate-cssCarte');
+    Route::post('/generate-Carte', [GenereteCarteController::class,'genererCarte'])->name('generate-Carte');
 
 });
 
