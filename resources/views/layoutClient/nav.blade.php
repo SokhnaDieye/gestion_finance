@@ -1,92 +1,51 @@
-<div class="navigation">
-    <ul>
-        <li>
-            <a href="#">
-                        <span class="icon">
-                            {{--<ion-icon name="logo-apple"></ion-icon>--}}
-                            <i class="fas fa-university" style="font-size: 2em;"></i>
-                        </span>
-                <span class="title">DigitalCash.</span>
-            </a>
-        </li>
+<div id="wrapper">
 
-        <li>
-            <a href="#">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                <span class="title">Dashboard</span>
+    <!--Start sidebar-wrapper-->
+    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+        <div class="brand-logo">
+            <a href="index.html">
+                <img src="assetsCli/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                <h5 class="logo-text">DigitalCash.</h5>
             </a>
-        </li>
+        </div>
+        <ul class="sidebar-menu do-nicescrol">
+            <li class="sidebar-header">NAVIGATION</li>
+            <li>
+                <a href="{{route('client-infos')}}">
+                    <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
 
-        <li>
-            <a href="#">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                <span class="title">Creer Compte</span>
-            </a>
-        </li>
+            <li>
+                <a href="{{route('carte')}}">
+                    <i class="zmdi zmdi-invert-colors"></i> <span>Generate Carte</span>
+                </a>
+            </li>
 
-        <li>
-            <a href="#">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                <span class="title">Messages</span>
-            </a>
-        </li>
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span>
+                </a>
+            </li>
 
-        <li>
-            <a href="#">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                <span class="title">Help</span>
-            </a>
-        </li>
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-grid"></i> <span>Tables</span>
+                </a>
+            </li>
 
-        <li>
-            <a href="#">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                <span class="title">Settings</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-             <span class="icon">
-                    <ion-icon class="ico" name="log-out-outline"></ion-icon>
-             </span>
-            <form class="icon" method="POST" action="{{ route('logout') }}">
-                  <span class="title">
-                        @csrf
-                    <button>Deconnection</button>
-                  </span>
-            </form>
-            </a>
-        </li>
-    </ul>
-</div>
-<style>
- /*   .ico{
-        padding: 10px 10px;
-        font-size: 2em;
-        color: white
-    }
-    .ico:hover{
-        color: darkblue;
-    }*/
-    button{
-        margin-top: -60px;
-        margin-left: 5px;
-        background: inherit;
-        border: none;
-        color: white;
-        font-size: medium
-    }
-    button:hover {
-        color: darkblue;
-    }
-</style>
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-face"></i> <span>Profile</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>

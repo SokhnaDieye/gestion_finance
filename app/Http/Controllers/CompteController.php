@@ -39,10 +39,6 @@ class CompteController extends Controller
     public function creerCompte(Request $request)
     {
         $user = Auth::user();
-
-
-
-        // Générer un RIB unique de 12 chiffres
         $rib = $this->genererRibUnique();
 
         // Valider l'unicité du RIB dans la base de données
@@ -71,10 +67,8 @@ class CompteController extends Controller
             'pack_id' => $pack->id,
         ]);
 
-        // Sauvegarder le compte dans la base de données
         $compte->save();
 
-        // Redirection ou autres actions nécessaires
         return redirect()->route('client-infos');
     }
 

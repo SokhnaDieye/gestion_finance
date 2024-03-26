@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompteController;
+use App\Http\Controllers\GenereteCarteController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,14 +41,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/creer-compte', [CompteController::class, 'index'])->name('pageCreerCompte');
     Route::post('/creer-compte', [CompteController::class, 'creerCompte'])->name('creer-compte');
     Route::get('/client-infos', [CompteController::class, 'afficherInfo'])->name('client-infos');
+
 // Route pour effectuer une transaction
     Route::post('/faire-transaction/{id}', [TransactionController::class, 'faireTransaction'])
         ->name('faire-transaction');
-
-
-
-
     Route::delete('/deconnexion', [\App\Http\Controllers\AuthController::class, 'deconnexion'])->name('deconnexion');
+
+// generer cssCarte
+    Route::get('/carte', [\App\Http\Controllers\GenereteCarteController::class, 'index'])->name('carte');
+    Route::post('/generate-cssCarte', [GenereteCarteController::class,'genererCarte'])->name('generate-cssCarte');
 
 });
 
@@ -63,3 +65,4 @@ Route::group(['middleware' => 'guest'], function () {
 //deconnection
 Route::post('logout', [\App\Http\Controllers\AuthController::class, 'destroy'])
     ->name('logout');
+
