@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NouveauCompteMail;
 use App\Models\Compte;
 use App\Models\Pack;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
@@ -42,15 +44,16 @@ class CompteController extends Controller
         $rib = $this->genererRibUnique();
 
         // Valider l'unicité du RIB dans la base de données
-//        $ribUniqueRule = Rule::unique('comptes', 'rib');
-//        $request->validate(
-//            [
-//                'typeCompte' => 'required',
-//                'rib' => $ribUniqueRule,
-//                'cin' => 'required|string',
-//                'derniereDeduction' => null,
-//            ]
-//        );
+        // Vérifier si l'utilisateur a déjà un compte courant ou un compte épargne
+        $compteCourantExist = $user->comptes()->where('typeCompte', 'courant')->exists();
+        $compteEpargneExist = $user->comptes()->where('typeCompte', 'epargne')->exists();
+
+        $ribUniqueRule = Rule::unique('comptes', 'rib');
+        $request->validate(
+            [
+                'typeCompte' => $compteCourantExist ? 'required|in:epargne' : 'required|in:courant,epargne',
+            ]
+        );
 
         $fileNameToStore = time(). '.' .$request->photo->extension();
         $request-> photo -> storeAs('public/imageClient',$fileNameToStore);
@@ -66,8 +69,10 @@ class CompteController extends Controller
             'statut' => 'actif',
             'pack_id' => $pack->id,
         ]);
-
         $compte->save();
+
+        // Envoi d'un e-mail à l'utilisateur
+        Mail::to($user->email)->send(new NouveauCompteMail($compte));
 
         return redirect()->route('client-infos');
     }

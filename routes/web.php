@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
 // generer cssCarte
     Route::get('/carte', [\App\Http\Controllers\GenereteCarteController::class, 'index'])->name('carte');
     Route::post('/generate-Carte', [GenereteCarteController::class,'genererCarte'])->name('generate-Carte');
+    Route::get('/showcartes', [GenereteCarteController::class,'showCartes'])->name('showcartes');
+
 
 });
 

@@ -19,11 +19,17 @@
                                     <div class="form-group row">
                                         <label for="rib_destination" class="col-lg-3 col-form-label form-control-label">Type de compte</label>
                                         <div class="col-lg-9">
-                                            <select class="form-control" id="typeCompte" name="typeCompte" required>
+                                            <select class="form-control @error('typeCompte') is-invalid @enderror" id="typeCompte" name="typeCompte" required>
                                                 <option disabled selected>Sélectionner un Compte</option>
                                                 <option value="courant">Compte Courant</option>
                                                 <option value="epargne">Compte Épargne</option>
                                             </select>
+                                            @error('typeCompte')
+                                            <div class="invalid-feedback">
+                                                <p style="font-size: 20px" class="text-danger">            {{$message}}</p>
+                                            </div>
+                                            @enderror
+
                                         </div>
                                     </div>
                                     <div class="form-group row">

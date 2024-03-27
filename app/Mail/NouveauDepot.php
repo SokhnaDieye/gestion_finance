@@ -8,20 +8,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NouveauCompteMail extends Mailable
+class NouveauDepot extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $compte;
+    public $montant;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Compte $compte)
+    public function __construct(Compte $compte, $montant)
     {
         $this->compte = $compte;
+        $this->montant = $montant;
     }
 
     /**
@@ -31,7 +33,11 @@ class NouveauCompteMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.nouveauCompte')
-            ->subject('Bienvenue sur Digicash');
+        return $this->view('emails.nouveauDepot')
+            ->subject('Notification de dépôt sur votre compte')
+            ->with([
+                'compte' => $this->compte,
+                'montant' => $this->montant,
+            ]);
     }
 }

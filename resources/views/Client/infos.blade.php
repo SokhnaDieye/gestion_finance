@@ -58,9 +58,45 @@
                     </div>
                 </div>
                 @endforeach
+
+                <div class="media align-items-center">
+                    <div class="media-body text-left ml-3">
+                        <div class="progress-wrapper">
+                            <a class="" href="{{route('pageCreerCompte')}}"><strong>Créer un autre compte</strong> </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
+
             <div class="col-lg-8">
+                @if(session('erreurBloquer'))
+                    <div class="alert text-danger alert-dismissible fade show" role="alert">
+                        <strong>{{session("erreurBloquer")}}</strong>
+                    </div>
+                @endif
+                @if(session('erreurCompte'))
+                    <div class="alert text-danger alert-dismissible fade show" role="alert">
+                        <strong>{{session("erreurCompte")}}</strong>
+                    </div>
+                @endif
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{session("success")}}</strong>.
+
+                    </div>
+                @endif
+                @if(session('erreur'))
+                    <div class="alert text-danger alert-dismissible fade show" role="alert">
+                        <strong>{{session("erreur")}}</strong>.
+                    </div>
+                @endif
+                    @if(session('erreurMontant'))
+                    <div class="alert text-danger alert-dismissible fade show" role="alert">
+                        <strong>{{session("erreurMontant")}}</strong>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body">
                         <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
@@ -92,6 +128,27 @@
                                         </div>
                                     </div>
                                 </form>
+                                <div class="col-md-12">
+                                    <h2 class="text-center mb-4">Détails des Transactions</h2>
+                                    <table class="table table-bordered transactions-table">
+                                        <thead class="bg-secondary">
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Montant</th>
+                                            <th>Nature</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($compte->transactions()->latest()->take(5)->get() as $transaction)
+                                            <tr class="{{ $transaction->type === 'debit' ? 'text-danger' : 'text-white' }}">
+                                                <td>{{ $transaction->created_at }}</td>
+                                                <td>{{ $transaction->montant }} F CFA</td>
+                                                <td>{{ $transaction->type }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

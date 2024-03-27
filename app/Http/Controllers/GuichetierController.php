@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NouveauCompteMail;
+use App\Mail\NouveauDepot;
 use App\Models\Compte;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class GuichetierController extends Controller
 {
@@ -25,6 +28,9 @@ class GuichetierController extends Controller
             'type' => 'depot',
             'montant' => $request->montant,
         ]);
+
+        // Envoyer un e-mail de notification de dépôt
+        Mail::to($compte->user->email)->send(new NouveauDepot($compte, $request->montant));
 
         return back()->with('success', 'Dépôt effectué avec succès.');
     }

@@ -29,6 +29,12 @@ class User extends Authenticatable
         return $this->hasMany(Compte::class);
     }
 
+    public function cartes()
+    {
+        return $this->hasMany(Carte::class);
+    }
+
+
 
     /**
      * The attributes that should be hidden for serialization.
