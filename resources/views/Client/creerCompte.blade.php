@@ -26,7 +26,7 @@
                                             </select>
                                             @error('typeCompte')
                                             <div class="invalid-feedback">
-                                                <p style="font-size: 20px" class="text-danger">            {{$message}}</p>
+                                                <p style="font-size: 20px" class="text-danger">Vous avez déja un compte courant</p>
                                             </div>
                                             @enderror
 

@@ -11,8 +11,8 @@
 
                     @foreach($comptes as $compte)
                     <div class="card-body pt-5">
-                        <img src="{{ asset('storage/imageClient/' . $compte->photo) }}" class="card-img-top"
-                             alt="Photo du Client">
+                        <img src="{{ asset('storage/imageClient/' . $compte->photo) }}" class="card-img-top" alt="Photo du Client" width="300" height="200">
+
                         <h2 class="card-title">{{$compte->user->prenom}} {{$compte->user->nom }}</h2>
                     </div>
                     <div class="card-body border-top border-light">
@@ -55,14 +55,37 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                        @foreach($compteEpargne as $epargne)
+                        <hr>
+                        <h5>Info Compte Epargne</h5>
+                        <hr>
+                        <div class="media align-items-center">
+                            <div class="media-body text-left ml-3">
+                                <div class="progress-wrapper">
+                                    <h1 class="card-text"><strong>rib:</strong> {{ $epargne->rib }} </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="media align-items-center">
+                            <div class="media-body text-left ml-3">
+                                <div class="progress-wrapper">
+                                    <h1 class="card-text"><strong>Solde:</strong> {{ $epargne->solde }} FCFA</h1>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
-                @endforeach
+
 
                 <div class="media align-items-center">
                     <div class="media-body text-left ml-3">
                         <div class="progress-wrapper">
-                            <a class="" href="{{route('pageCreerCompte')}}"><strong>Créer un autre compte</strong> </a>
+                            @if($comptes->count() < 1 || $compteEpargne->count()  <1 )
+                                <a class="" href="{{ route('pageCreerCompte') }}"><strong>Créer un autre compte</strong></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -71,6 +94,12 @@
 
 
             <div class="col-lg-8">
+                @if(session('erreurTypeCompte'))
+                    <div class="alert text-danger alert-dismissible fade show" role="alert">
+                        <strong>{{session("erreurTypeCompte")}}</strong>
+                    </div>
+                @endif
+
                 @if(session('erreurBloquer'))
                     <div class="alert text-danger alert-dismissible fade show" role="alert">
                         <strong>{{session("erreurBloquer")}}</strong>

@@ -1,32 +1,32 @@
 @extends('layoutAdmin.app')
 @section('contentAdmin')
 
-    <div class="cardBox">
-        <div class="card">
+    <div class="cardBox ">
+        <div class="card" >
             <div>
-                <div class="numbers">1,504</div>
-                <div class="cardName">Daily Views</div>
+                <div class="cardName">Nombre de clients</div>
+                <div class="numbers">{{$numberOfClients}}</div>
             </div>
 
-            <div class="iconBx">
-                <ion-icon name="eye-outline"></ion-icon>
+            <div class="iconBx " >
+                <ion-icon name="person"></ion-icon>
             </div>
         </div>
 
+{{--        <div class="card">--}}
+{{--            <div>--}}
+{{--                <div class="numbers">80</div>--}}
+{{--                <div class="cardName">Sales</div>--}}
+{{--            </div>--}}
+
+{{--            <div class="iconBx">--}}
+{{--                <ion-icon name="cart-outline"></ion-icon>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+
         <div class="card">
             <div>
-                <div class="numbers">80</div>
-                <div class="cardName">Sales</div>
-            </div>
-
-            <div class="iconBx">
-                <ion-icon name="cart-outline"></ion-icon>
-            </div>
-        </div>
-
-        <div class="card">
-            <div>
-                <div class="numbers">284</div>
+                <div class="numbers">0</div>
                 <div class="cardName">Comments</div>
             </div>
 
@@ -35,10 +35,12 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card "  >
             <div>
-                <div class="numbers">$7,842</div>
-                <div class="cardName">Earning</div>
+                <div>
+                    <div class="numbers">{{$totalBalance}} FCFA</div>
+                    <div class="cardName">Balance</div>
+                </div>
             </div>
 
             <div class="iconBx">
@@ -69,13 +71,13 @@
                             <form action="{{route('desactiver',$u->id)}}" method="post">
                                 @method('put')
                                 @csrf
-                                <button class="test" type="submit" >Désactiver</button>
+                                <button class="test btn btn-danger" type="submit" >Désactiver</button>
                             </form>
                         @else
                             <form action="{{route('activer',$u->id)}}" method="post">
                                 @method('put')
                                 @csrf
-                                <button  type="submit" class="test" >Activer</button>
+                                <button  type="submit" class="test btn btn-warning" >Activer</button>
                             </form>
                         @endif
                     </td>

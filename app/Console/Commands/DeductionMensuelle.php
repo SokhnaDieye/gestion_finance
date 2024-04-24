@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Compte;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 

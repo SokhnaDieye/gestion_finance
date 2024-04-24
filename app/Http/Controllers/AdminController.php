@@ -10,9 +10,16 @@ class AdminController extends Controller
 {
     public  function  index()
     {
-
+        // liste des clients
         $listeU=compte::all();
-        return view('Admin.index',compact('listeU'));
+        // nombres de clients
+        $numberOfClients = User::where('typeUser', 1)->count();
+        //la somme total d argent dans la banque
+        $totalBalance = Compte::whereHas('user', function($query) {
+            // Filtrer les comptes qui ont des utilisateurs avec le rôle "client"
+            $query->where('typeUser', 1);
+        })->sum('solde');
+        return view('Admin.index',compact('listeU','numberOfClients','totalBalance'));
     }
     public function desactiver (string $id)
     {

@@ -22,7 +22,7 @@
 
                         <div class="valid-date">
                             <h6>Date d'expiration</h6>
-                            <h5>{{ date('m/y', strtotime('+1 years')) }}</h5>
+
                             <h5>{{ $carte->date_expiration }}</h5>
                         </div>
                     </div>

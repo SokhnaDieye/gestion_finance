@@ -52,6 +52,7 @@ class CompteController extends Controller
         $request->validate(
             [
                 'typeCompte' => $compteCourantExist ? 'required|in:epargne' : 'required|in:courant,epargne',
+//                'derniereDeduction' => null,
             ]
         );
 
@@ -85,8 +86,17 @@ class CompteController extends Controller
     }
     public function afficherInfo()
     {
-        $comptes = Auth::user()->comptes;
-        return view('Client.infos',compact('comptes'));
+//        $comptes = Auth::user()->comptes->take(1);
+//        return view('Client.infos',compact('comptes'));
+        $user = Auth::user();
+
+        // Récupérer le premier compte courant de l'utilisateur s'il en a un
+        $comptes = $user->comptes->where('typeCompte', 'courant')->take(1);
+
+        // Récupérer le premier compte épargne de l'utilisateur s'il en a un
+        $compteEpargne = $user->comptes->where('typeCompte', 'epargne')->take(1);
+
+        return view('Client.infos', compact('comptes', 'compteEpargne'));
     }
 
 

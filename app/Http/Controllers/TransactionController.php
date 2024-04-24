@@ -20,6 +20,11 @@ class TransactionController extends Controller
         ]);
 
         $compteSource = Compte::findOrFail($id);
+
+        if ($compteSource->typeCompte !== 'courant') {
+            return back()->with('erreurTypeCompte', 'Seuls les comptes courants peuvent effectuer des transactions.');
+        }
+
         if ($compteSource->rib == $request->rib_destinataire)
         {
             return back()->with('erreur', 'vous ne pouver pas transferer à votre propre compte.');
@@ -59,7 +64,7 @@ class TransactionController extends Controller
 
                 $transaction = Transaction::create([
                     'compte_id' => $compteSource->id,
-                    'type' => 'débit',
+                    'type' => 'debit',
                     'montant' => $montantArrondi,
                     'compte_destination_id' => $compteDestination->id,
                 ]);
@@ -67,7 +72,7 @@ class TransactionController extends Controller
                 if ($compteDestination) {
                     Transaction::create([
                         'compte_id' => $compteDestination->id,
-                        'type' => 'crédit',
+                        'type' => 'credit',
                         'montant' => $montantArrondi,
                         'compte_destination_id' => $compteSource->id,
                     ]);

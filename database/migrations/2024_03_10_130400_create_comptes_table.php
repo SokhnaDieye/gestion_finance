@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->enum('typeCompte', ['epargne', 'courant']); // Utilisation d'un enum pour le type de compte
             $table->string('rib')->unique();
-            $table->string('cin')->unique(); // En supposant que le numéro CIN peut contenir des caractères alphabétiques
+            $table->string('cin')->nullable(); // En supposant que le numéro CIN peut contenir des caractères alphabétiques
             $table->string('photo')->nullable(); // Utilisation d'une chaîne pour stocker le chemin de la photo
             $table->integer('solde');
             $table->enum('statut', ['actif', 'bloque', 'debloque']); // Utilisation d'un enum pour le statut
